@@ -34,12 +34,16 @@ jQuery(document).ready(function () {
 
   let autoSlide = setInterval(auto2, 5000);
 
+  let hoverTimeout;
   $mainslider.hover(
     function () {
+      clearTimeout(hoverTimeout);
       clearInterval(autoSlide);
     },
     function () {
-      autoSlide = setInterval(auto2, 5000);
+      hoverTimeout = setTimeout(function () {
+        autoSlide = setInterval(auto2, 5000);
+      }, 100);
     }
   );
 
@@ -60,10 +64,13 @@ jQuery(document).ready(function () {
   function moveSlider(nextIndex) {
     $slider.eq(a).css({ left: "0" }).animate({ left: "-100%" });
     $slider.eq(nextIndex).css({ left: "100%" }).animate({ left: "0" });
+
     $slide_btn.css({ "background-color": "black" });
     $slide_btn.eq(nextIndex).css({ "background-color": "white" });
+
+    // 슬라이드 이동 후 인덱스 업데이트
     a = nextIndex;
-    b = nextIndex === 0 ? $slider.length - 1 : nextIndex - 1;
+    b = (a - 1 + $slider.length) % $slider.length;
   }
 
   $right.click(function () {
@@ -72,7 +79,7 @@ jQuery(document).ready(function () {
   });
 
   $left.click(function () {
-    let prevIndex = (b - 1 + $slider.length) % $slider.length;
+    let prevIndex = (a - 1 + $slider.length) % $slider.length;
     moveSlider(prevIndex);
   });
 
