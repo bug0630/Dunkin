@@ -32,17 +32,20 @@ jQuery(document).ready(function () {
     $right.click();
   }
 
-  $mainslider.off("mouseenter mouseleave").hover(
-    function () {
-      clearTimeout(hoverTimeout);
-      clearInterval(autoSlide);
-    },
-    function () {
-      hoverTimeout = setTimeout(function () {
-        autoSlide = setInterval(auto2, 5000);
-      }, 100);
-    }
-  );
+  setTimeout(function () {
+    $mainslider.off("mouseenter mouseleave").hover(
+      function () {
+        clearTimeout(hoverTimeout);
+        clearInterval(autoSlide);
+        console.log("슬라이더에 마우스 진입, autoSlide 중지");
+      },
+      function () {
+        hoverTimeout = setTimeout(function () {
+          autoSlide = setInterval(auto2, 5000);
+        }, 100);
+      }
+    );
+  }, 100);
 
   $slide_btn.each(function (index) {
     $(this).click(function () {
