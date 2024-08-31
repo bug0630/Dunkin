@@ -1,6 +1,7 @@
 jQuery(document).ready(function () {
   var $right = $(".right"),
     $left = $(".left"),
+    $mainslider = $(".slider_main"),
     $slider = $(".slider").find("li"),
     $nav = $(".gnb_li"),
     $depth = $(".depth_wrap"),
@@ -31,14 +32,14 @@ jQuery(document).ready(function () {
     $right.click();
   }
 
-  let autoSlide = setInterval(auto2, 3000);
+  let autoSlide = setInterval(auto2, 5000);
 
-  $slider.hover(
+  $mainslider.hover(
     function () {
       clearInterval(autoSlide);
     },
     function () {
-      autoSlide = setInterval(auto2, 3000);
+      autoSlide = setInterval(auto2, 5000);
     }
   );
 
