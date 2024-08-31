@@ -32,13 +32,11 @@ jQuery(document).ready(function () {
     $right.click();
   }
 
-  let autoSlide = setInterval(auto2, 5000);
-
-  let hoverTimeout;
-  $mainslider.hover(
+  $mainslider.off("mouseenter mouseleave").hover(
     function () {
       clearTimeout(hoverTimeout);
       clearInterval(autoSlide);
+      console.log("슬라이더에 마우스 진입, autoSlide 중지");
     },
     function () {
       hoverTimeout = setTimeout(function () {
