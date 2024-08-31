@@ -36,7 +36,6 @@ jQuery(document).ready(function () {
     function () {
       clearTimeout(hoverTimeout);
       clearInterval(autoSlide);
-      console.log("슬라이더에 마우스 진입, autoSlide 중지");
     },
     function () {
       hoverTimeout = setTimeout(function () {
